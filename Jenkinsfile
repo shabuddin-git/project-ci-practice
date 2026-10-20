@@ -45,6 +45,19 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy to EC2') {
+            steps {
+                sshagent(credentials: ['streamlit-deploy-ssh']) {
+                    sh '''
+                        ssh -o BatchMode=yes ubuntu@172.31.27.188 \
+                        'docker pull shabdoc/streamlit1-app:latest &&
+                         docker rm -f streamlit-app &&
+                         docker run -d --name streamlit-app --restart unless-stopped -p 8501:8501 shabdoc/streamlit1-app:latest'
+                    '''
+                }
+            }
+        }
     }
 
     post {
