@@ -43,7 +43,7 @@ if submitted:
         st.error("Passwords do not match.")
 
     else:
-        st.success("Registration successful!")
+        st.success("Registration successful!!!!!!!")
 
         st.subheader("Registered User Details")
 
