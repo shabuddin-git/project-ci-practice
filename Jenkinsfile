@@ -48,7 +48,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(credentials: ['streamlit-deploy-ssh']) {
+                sshagent(credentials: ['streamlit-deploy-ssh-v2']) {
                     sh '''
                         ssh -o BatchMode=yes ubuntu@172.31.27.188 \
                         'docker pull shabdoc/streamlit1-app:latest &&
